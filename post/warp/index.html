@@ -6,7 +6,7 @@
 
 <title>利用WARP进行流媒体解锁 | 千面妖的网络日志</title>
 
-<link rel="shortcut icon" href="https://qianmianyao.github.io/favicon.ico?v=1623841538340">
+<link rel="shortcut icon" href="https://qianmianyao.github.io/favicon.ico?v=1623855638414">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://qianmianyao.github.io/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1623841538340" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1623855638414" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -102,8 +102,8 @@
                     
                 </div>
                 <div class="post-content">
-                    <p><img src="https://qianmianyao.github.io/post-images/1623840733418.jpg" alt="" loading="lazy"><br>
-逛Github的时候看推荐发现了这个项目，结果就是一晚上没睡，并且付出了63元的测试结果下，决定水一篇文章</p>
+                    <p>逛Github的时候看推荐发现了这个项目，结果就是一晚上没睡，并且付出了63元的测试结果下，决定水一篇文章</p>
+<!-- more -->
 <p>Warp是CloudFlare推出的一个VPN服务，目的在于加密流量和IP，实现匿名访问，具体信息可以参考官方的博文👉<a href="https://blog.cloudflare.com/zh-cn/announcing-warp-plus-zh-cn/">Introducing WARP: Fixing Mobile Internet Performance and Security</a></p>
 <p>手动配置其实也不难，为了更方便这里当然推荐使用一键脚本</p>
 <p><a href="https://github.com/missuo/CloudflareWarp">missuo/CloudflareWarp</a></p>
@@ -119,22 +119,22 @@
 <pre><code class="language-bash">wget -O warp.sh https://raw.githubusercontent.com/missuo/CloudflareWarp/main/warp.sh &amp;&amp; bash warp.sh
 </code></pre>
 <p>4.脚本执行完毕后会出现如下选项，选择4，增加IPV6，等待执行完毕即可</p>
-<figure data-type="image" tabindex="1"><img src="https://qianmianyao.github.io/post-images/1623840751976.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/2jpAyt"><img src="https://z3.ax1x.com/2021/06/16/2jpAyt.png" alt="2jpAyt.png" loading="lazy"></a></figure>
 <p>5.ipv6测试，输入 <code>curl ipv6.ip.sb</code> 返回结果应该是你的ipv6地址</p>
 <p>6.netflix测试，执行如下脚本，如下图则证明解锁成功</p>
 <pre><code class="language-bash">wget -O nf https://cdn.jsdelivr.net/gh/sjlleo/netflix-verify/CDNRelease/nf_2.60_linux_amd64 &amp;&amp; chmod +x nf &amp;&amp; clear &amp;&amp; ./nf
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://qianmianyao.github.io/post-images/1623840806457.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><a href="https://imgtu.com/i/2jpZef"><img src="https://z3.ax1x.com/2021/06/16/2jpZef.png" alt="2jpZef.png" loading="lazy"></a></figure>
 <p>7.由于仅解锁ipv6，我们需要让路由优先使用ipv6，验证优先级可以使用 <code>curl ip.p3terx.com</code> 来测试，输出的是ipv4就说明你现在是ipv4优先，反之亦然。修改 <code>/etc/gai.conf</code> 在最后一行添加下面的代码</p>
 <pre><code class="language-bash">precedence ::ffff:0:0/96 100
 </code></pre>
 <p>关于代理工具的ipv6优先，请参考如下这篇博客👉<a href="https://loukky.com/archives/1507?__cf_chl_jschl_tk__=ad63295e7e916843957f5f94727b8ecf4b15ddc3-1621981917-0-AYTeutMNxpDydZRNs7P_LQIkqwx_ksRC7zIyTtEZXTtudJ8Yflb0L7qDiL5Jprux30izkMyf_AyoEVjyMMpVj4AcTVGx7LF2WQcV4zLGYLiD1Je_4gqTPuiw7EyrJTQ1IEGc2p-xeg_06Gv69ikZ9EZyoiY9wdsWPzJneGbxdGGvJ7TRiCtcoOTvc6fppGJNrLfqGLc0yStntnuAWGrm76ZVy4vK3rE9OUmRA43-vFEVlducGbowUZrgjFqUBgxr0YWDumUAVdkYo_0tx8dcu1GpC3lzibVSrcNG1ql4sYixfOa6pdlNK-lTlHylGvlKACVScAlluhAVfB6lJewDu5CCRAwXJiyUN4EeLuB8zd3tk5MKtfyfQo1GyQUMgD13hpcQQLeC5liLur5U78LTC2auz0SHgVIt4SRwsStuV5H60jK3RQMDf0VDbkKBqcAcHWuO7zcm5178VGrDuQ-sz4FKxRbOSm8O14k6y6VswTt7">IPV6优先</a></p>
 <p>现在，就可以愉快的观看Netflix啦</p>
-<figure data-type="image" tabindex="3"><img src="https://qianmianyao.github.io/post-images/1623840846979.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><a href="https://imgtu.com/i/2jpew8"><img src="https://z3.ax1x.com/2021/06/16/2jpew8.png" alt="2jpew8.png" loading="lazy"></a></figure>
 <h3 id="结语">结语</h3>
 <p>偷偷用speedtest来测一下Warp的速度</p>
-<figure data-type="image" tabindex="4"><img src="https://qianmianyao.github.io/post-images/1623840857174.png" alt="" loading="lazy"></figure>
-<p>由于我并没有奈菲的账号，为了测试是否成功，去买了一个账号，有效期两个月，结果无法登录。</p>
+<p><a href="https://imgtu.com/i/2jpEOP"><img src="https://z3.ax1x.com/2021/06/16/2jpEOP.png" alt="2jpEOP.png" loading="lazy"></a><br>
+由于我并没有奈菲的账号，为了测试是否成功，去买了一个账号，有效期两个月，结果无法登录。</p>
 <p>反馈过去告诉我是代理的问题，实在是想知道结果，又花钱买了一个月的代理，结果还是打不开。</p>
 <p>无奈之下，google了一下看看有没有便宜的月抛账号，结果找到了3.5元/月的5日抛，tmd，怪自己没提前去找这种账号，最后的结果就是，<code>代理=22/月</code>、<code>账号20/月x2</code>，一共损失62元。</p>
 <p>所以，千万要早睡</p>
@@ -147,8 +147,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://qianmianyao.github.io/post/26/" class="post-title gt-a-link">
-                    网站备份脚本
+                <a href="https://qianmianyao.github.io/post/28/" class="post-title gt-a-link">
+                    Certbot自动配置SSL
                 </a>
             </div>
         
