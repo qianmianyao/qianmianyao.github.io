@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>搜索 - 千面妖的网络日志</title>
+<title>网站备份脚本 | 千面妖的网络日志</title>
 
 <link rel="shortcut icon" href="https://qianmianyao.github.io/favicon.ico?v=1623840926001">
 
@@ -27,21 +25,11 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.0/dist/fuse.basic.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.3/ejs.min.js"></script>
-    <script src="https://qianmianyao.github.io/media/gridea-search/gridea-search.js"></script>
-    <script src="https://qianmianyao.github.io/media/gridea-search/result-template.ejs" type="text/ejs"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
-
 <body>
-    <style>
-        .searched-keyword {
-            background-color: yellow;
-            color: red;
-        }
-    </style>
-    <div class="main gt-bg-theme-color-first">
-        <nav class="navbar navbar-expand-lg">
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -97,16 +85,65 @@
     </div>
 </nav>
 
-        <div id="gridea-search-result" data-update="1623840926001">
-            <div class="searching" style="font-size: 18px; margin-top: 50px;">
-                <i class="fa fa-sync-alt fa-spin"></i>&nbsp;&nbsp;搜索中......
-                <br><br>
-                <span style="font-size: 65%; color: #aaa">第一次搜索可能需要耗费较长时间构建索引，请耐心等待...</span>
-            </div>
-            <div class="no-result" style="display:none; font-size: 20px; margin-top: 50px;">
-                <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;未搜索到相关文章，请更换关键词
-            </div>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    网站备份脚本
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-05-16 ·
+                    </time>
+                    
+                        <a href="https://qianmianyao.github.io/tag/gPvXtZXVj/" class="post-tags">
+                            # shell
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h3 id="工具">工具</h3>
+<p>备份是通过又拍云的官方工具UPX定时上传到又拍云的对象储存中的，使用这个脚本需要先安装UPX和expect，后者用来自动登陆。</p>
+<h3 id="脚本内容">脚本内容</h3>
+<p>所有send字段的passwd和user修改成自己的用户名和密码</p>
+<pre><code class="language-bash">#!/usr/bin/expect -f
+set timeout 30
+spawn sudo tar -czPf /home/qianmianyao/qianmianyao.cn.tar.gz /home/wwwroot/qianmianyao.cn #自己修改压缩文件名
+expect &quot;*user:&quot;
+send &quot;passwd\\r&quot;
+
+mysqldump -uuser -ppasswd database&gt;database.sql
+
+set timeout 30
+spawn upx login
+expect &quot;ServiceName:&quot;
+send &quot;user\\r&quot;
+expect &quot;Operator:&quot;
+send &quot;user\\r&quot;
+expect &quot;Password:&quot;
+send &quot;passwd&quot;
+
+upx rm qianmianyao.cn.tar.gz #修改成自己的压缩文件名，下面一样
+upx rm wp.sql
+upx put qianmianyao.cn.tar.gz
+upx put wp.sql
+</code></pre>
+<h3 id="结语">结语</h3>
+<p>利用expect和upx自动登陆，然后知道上传文件，实现备份，不想用upx也可以直接用又拍云提供的ftp，实现效果也是一样的。</p>
+<p><a href="https://github.com/upyun/upx">UPX</a></p>
+
+                </div>
+            </article>
         </div>
+
+        
+
+        
+
+        
+
+        
+
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">温故而知新</div>
     <div class="social-container">
@@ -138,6 +175,6 @@
 </script>
 
     </div>
+</div>
 </body>
-
 </html>
