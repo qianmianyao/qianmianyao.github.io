@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qianmianyao.github.io</id>
     <title>千面妖的网络日志</title>
-    <updated>2021-06-16T10:55:55.862Z</updated>
+    <updated>2021-06-16T10:57:34.721Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qianmianyao.github.io"/>
     <link rel="self" href="https://qianmianyao.github.io/atom.xml"/>
@@ -10,51 +10,6 @@
     <logo>https://qianmianyao.github.io/images/avatar.png</logo>
     <icon>https://qianmianyao.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 千面妖的网络日志</rights>
-    <entry>
-        <title type="html"><![CDATA[利用WARP进行流媒体解锁]]></title>
-        <id>https://qianmianyao.github.io/post/li-yong-warp-jin-xing-liu-mei-ti-jie-suo/</id>
-        <link href="https://qianmianyao.github.io/post/li-yong-warp-jin-xing-liu-mei-ti-jie-suo/">
-        </link>
-        <updated>2021-06-16T10:51:55.000Z</updated>
-        <content type="html"><![CDATA[<p><img src="https://qianmianyao.github.io/post-images/1623840733418.jpg" alt="" loading="lazy"><br>
-逛Github的时候看推荐发现了这个项目，结果就是一晚上没睡，并且付出了63元的测试结果下，决定水一篇文章</p>
-<p>Warp是CloudFlare推出的一个VPN服务，目的在于加密流量和IP，实现匿名访问，具体信息可以参考官方的博文👉<a href="https://blog.cloudflare.com/zh-cn/announcing-warp-plus-zh-cn/">Introducing WARP: Fixing Mobile Internet Performance and Security</a></p>
-<p>手动配置其实也不难，为了更方便这里当然推荐使用一键脚本</p>
-<p><a href="https://github.com/missuo/CloudflareWarp">missuo/CloudflareWarp</a></p>
-<h3 id="开始">开始</h3>
-<p>首先确保你的VPS内核版本≥5.X，如果不符合要请先更新内核，这里使用Debian10作为演示</p>
-<p>1.添加源，打开 <code>/etc/apt/source.list</code> 在尾部添加如下内容</p>
-<pre><code class="language-json">deb https://deb.debian.org/debian buster-backports main
-</code></pre>
-<p>2.安装内核后重新启动</p>
-<pre><code class="language-bash">apt install -t buster-backports linux-image-cloud-amd64 linux-headers-cloud-amd64 &amp;&amp; reboot
-</code></pre>
-<p>3.内核安装完毕后执行一键脚本</p>
-<pre><code class="language-bash">wget -O warp.sh https://raw.githubusercontent.com/missuo/CloudflareWarp/main/warp.sh &amp;&amp; bash warp.sh
-</code></pre>
-<p>4.脚本执行完毕后会出现如下选项，选择4，增加IPV6，等待执行完毕即可</p>
-<figure data-type="image" tabindex="1"><img src="https://qianmianyao.github.io/post-images/1623840751976.png" alt="" loading="lazy"></figure>
-<p>5.ipv6测试，输入 <code>curl ipv6.ip.sb</code> 返回结果应该是你的ipv6地址</p>
-<p>6.netflix测试，执行如下脚本，如下图则证明解锁成功</p>
-<pre><code class="language-bash">wget -O nf https://cdn.jsdelivr.net/gh/sjlleo/netflix-verify/CDNRelease/nf_2.60_linux_amd64 &amp;&amp; chmod +x nf &amp;&amp; clear &amp;&amp; ./nf
-</code></pre>
-<figure data-type="image" tabindex="2"><img src="https://qianmianyao.github.io/post-images/1623840806457.png" alt="" loading="lazy"></figure>
-<p>7.由于仅解锁ipv6，我们需要让路由优先使用ipv6，验证优先级可以使用 <code>curl ip.p3terx.com</code> 来测试，输出的是ipv4就说明你现在是ipv4优先，反之亦然。修改 <code>/etc/gai.conf</code> 在最后一行添加下面的代码</p>
-<pre><code class="language-bash">precedence ::ffff:0:0/96 100
-</code></pre>
-<p>关于代理工具的ipv6优先，请参考如下这篇博客👉<a href="https://loukky.com/archives/1507?__cf_chl_jschl_tk__=ad63295e7e916843957f5f94727b8ecf4b15ddc3-1621981917-0-AYTeutMNxpDydZRNs7P_LQIkqwx_ksRC7zIyTtEZXTtudJ8Yflb0L7qDiL5Jprux30izkMyf_AyoEVjyMMpVj4AcTVGx7LF2WQcV4zLGYLiD1Je_4gqTPuiw7EyrJTQ1IEGc2p-xeg_06Gv69ikZ9EZyoiY9wdsWPzJneGbxdGGvJ7TRiCtcoOTvc6fppGJNrLfqGLc0yStntnuAWGrm76ZVy4vK3rE9OUmRA43-vFEVlducGbowUZrgjFqUBgxr0YWDumUAVdkYo_0tx8dcu1GpC3lzibVSrcNG1ql4sYixfOa6pdlNK-lTlHylGvlKACVScAlluhAVfB6lJewDu5CCRAwXJiyUN4EeLuB8zd3tk5MKtfyfQo1GyQUMgD13hpcQQLeC5liLur5U78LTC2auz0SHgVIt4SRwsStuV5H60jK3RQMDf0VDbkKBqcAcHWuO7zcm5178VGrDuQ-sz4FKxRbOSm8O14k6y6VswTt7">IPV6优先</a></p>
-<p>现在，就可以愉快的观看Netflix啦</p>
-<figure data-type="image" tabindex="3"><img src="https://qianmianyao.github.io/post-images/1623840846979.png" alt="" loading="lazy"></figure>
-<h3 id="结语">结语</h3>
-<p>偷偷用speedtest来测一下Warp的速度</p>
-<figure data-type="image" tabindex="4"><img src="https://qianmianyao.github.io/post-images/1623840857174.png" alt="" loading="lazy"></figure>
-<p>由于我并没有奈菲的账号，为了测试是否成功，去买了一个账号，有效期两个月，结果无法登录。</p>
-<p>反馈过去告诉我是代理的问题，实在是想知道结果，又花钱买了一个月的代理，结果还是打不开。</p>
-<p>无奈之下，google了一下看看有没有便宜的月抛账号，结果找到了3.5元/月的5日抛，tmd，怪自己没提前去找这种账号，最后的结果就是，<code>代理=22/月</code>、<code>账号20/月x2</code>，一共损失62元。</p>
-<p>所以，千万要早睡</p>
-<p>END</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://qianmianyao.github.io/post/hello-gridea/</id>
