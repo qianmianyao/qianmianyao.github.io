@@ -2,18 +2,19 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qianmianyao.github.io</id>
     <title>千面妖的网络日志</title>
-    <updated>2021-06-17T06:07:15.293Z</updated>
+    <updated>2021-06-17T06:18:04.228Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qianmianyao.github.io"/>
     <link rel="self" href="https://qianmianyao.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>&lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto&quot; defer&gt;&lt;/script&gt;
+&lt;span id=&quot;hitokoto&quot;&gt;</subtitle>
     <logo>https://qianmianyao.github.io/images/avatar.png</logo>
     <icon>https://qianmianyao.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 千面妖的网络日志</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://qianmianyao.github.io/post/hello-gridea/</id>
-        <link href="https://qianmianyao.github.io/post/hello-gridea/">
+        <id>https://qianmianyao.github.io/hello-gridea/</id>
+        <link href="https://qianmianyao.github.io/hello-gridea/">
         </link>
         <updated>2021-06-15T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
@@ -44,8 +45,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[利用WARP进行流媒体解锁]]></title>
-        <id>https://qianmianyao.github.io/post/warp/</id>
-        <link href="https://qianmianyao.github.io/post/warp/">
+        <id>https://qianmianyao.github.io/warp/</id>
+        <link href="https://qianmianyao.github.io/warp/">
         </link>
         <updated>2021-05-26T10:51:55.000Z</updated>
         <summary type="html"><![CDATA[<p>逛Github的时候看推荐发现了这个项目，结果就是一晚上没睡，并且付出了63元的测试结果下，决定水一篇文章</p>
@@ -91,8 +92,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[搭建KMS在线激活服务器]]></title>
-        <id>https://qianmianyao.github.io/post/kms/</id>
-        <link href="https://qianmianyao.github.io/post/kms/">
+        <id>https://qianmianyao.github.io/kms/</id>
+        <link href="https://qianmianyao.github.io/kms/">
         </link>
         <updated>2021-05-16T06:02:00.000Z</updated>
         <summary type="html"><![CDATA[<p>对比其他版本的kms，更方便了，可以180天后自动续期，搭建方便，无需配置，搭建完毕后仅需要一个简单的bat脚本就可以激活系统</p>
@@ -122,8 +123,8 @@ slmgr /xpr
     </entry>
     <entry>
         <title type="html"><![CDATA[Bash命令补全]]></title>
-        <id>https://qianmianyao.github.io/post/bash-ming-ling-bu-quan/</id>
-        <link href="https://qianmianyao.github.io/post/bash-ming-ling-bu-quan/">
+        <id>https://qianmianyao.github.io/bash-ming-ling-bu-quan/</id>
+        <link href="https://qianmianyao.github.io/bash-ming-ling-bu-quan/">
         </link>
         <updated>2021-05-12T06:04:33.000Z</updated>
         <summary type="html"><![CDATA[<p>总是会忘记一些不怎么常用的命令，今天在github逛街的时候发现了bash的一款命令补全工具，十分好用</p>
@@ -166,8 +167,8 @@ make[1]: Leaving directory '/root/bash-completion-2.11'
     </entry>
     <entry>
         <title type="html"><![CDATA[File Browser一个简单的网盘程序]]></title>
-        <id>https://qianmianyao.github.io/post/29/</id>
-        <link href="https://qianmianyao.github.io/post/29/">
+        <id>https://qianmianyao.github.io/29/</id>
+        <link href="https://qianmianyao.github.io/29/">
         </link>
         <updated>2020-06-11T15:02:49.000Z</updated>
         <summary type="html"><![CDATA[<p>使用nginx和程序本体或者docker搭建一个简易的网盘。</p>
@@ -243,8 +244,8 @@ vim .filebrowser.json
     </entry>
     <entry>
         <title type="html"><![CDATA[Certbot自动配置SSL]]></title>
-        <id>https://qianmianyao.github.io/post/28/</id>
-        <link href="https://qianmianyao.github.io/post/28/">
+        <id>https://qianmianyao.github.io/28/</id>
+        <link href="https://qianmianyao.github.io/28/">
         </link>
         <updated>2020-06-10T14:51:13.000Z</updated>
         <summary type="html"><![CDATA[<p>Let’s Encrypt 是一个自动签发 https 证书的免费项目<br>
@@ -275,8 +276,8 @@ Certbot 是 Let’s Encrypt 官方推荐的证书生成客户端工具</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[Debian安装Redis]]></title>
-        <id>https://qianmianyao.github.io/post/debian-an-zhuang-redis/</id>
-        <link href="https://qianmianyao.github.io/post/debian-an-zhuang-redis/">
+        <id>https://qianmianyao.github.io/debian-an-zhuang-redis/</id>
+        <link href="https://qianmianyao.github.io/debian-an-zhuang-redis/">
         </link>
         <updated>2020-06-05T14:48:40.000Z</updated>
         <summary type="html"><![CDATA[<p>本来一只用着mysql，最近折腾nodebb需要用到redis，记录一下安装过程。</p>
@@ -309,8 +310,8 @@ redis-cli //进入交互界面
     </entry>
     <entry>
         <title type="html"><![CDATA[网站备份脚本]]></title>
-        <id>https://qianmianyao.github.io/post/26/</id>
-        <link href="https://qianmianyao.github.io/post/26/">
+        <id>https://qianmianyao.github.io/26/</id>
+        <link href="https://qianmianyao.github.io/26/">
         </link>
         <updated>2020-05-16T10:36:43.000Z</updated>
         <summary type="html"><![CDATA[<p>备份是通过又拍云的官方工具UPX定时上传到又拍云的对象储存中的，使用这个脚本需要先安装UPX和expect，后者用来自动登陆</p>

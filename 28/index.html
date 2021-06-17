@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>redis | 千面妖的网络日志</title>
+<title>Certbot自动配置SSL | 千面妖的网络日志</title>
 
 <link rel="shortcut icon" href="https://qianmianyao.github.io/favicon.ico?v=1623910675879">
 
@@ -25,11 +25,11 @@
 
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -85,46 +85,67 @@
     </div>
 </nav>
 
-        <div class="current-tag-container">
-            <h2 class="title gt-c-content-color-first">
-                #redis
-            </h2>
-        </div>
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://qianmianyao.github.io/debian-an-zhuang-redis/">
-                            <span class="post-title gt-c-content-color-first">Debian安装Redis</span>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Certbot自动配置SSL
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-06-10 ·
+                    </time>
+                    
+                        <a href="https://qianmianyao.github.io/tag/wlrgXYB62/" class="post-tags">
+                            # nginx
                         </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>本来一只用着mysql，最近折腾nodebb需要用到redis，记录一下安装过程。</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2020-06-05 ·
-                        </time>
-                        
-                            <a href="https://qianmianyao.github.io/tag/4Bf7Vksrl/" class="post-tag">
-                                # redis
-                            </a>
-                        
-                    </div>
+                    
+                        <a href="https://qianmianyao.github.io/tag/gSkKZb8aTn/" class="post-tags">
+                            # SSL
+                        </a>
+                    
                 </div>
-                
+                <div class="post-content">
+                    <p>Let’s Encrypt 是一个自动签发 https 证书的免费项目<br>
+Certbot 是 Let’s Encrypt 官方推荐的证书生成客户端工具</p>
+<!-- more -->
+<p>首先去官网 <a href="https://certbot.eff.org/">certbot</a></p>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/2jS7i4"><img src="https://z3.ax1x.com/2021/06/16/2jS7i4.png" alt="2jS7i4.png" loading="lazy"></a></figure>
+<p>箭头指向的地方选择你的web服务器和系统版本<br>
+比如我常用的就是nginx和debian</p>
+<p>选择好后稍等1-3秒下拉既可以看到官方的部署教程</p>
+<h2 id="安装">安装</h2>
+<p>安装本体和插件</p>
+<pre><code class="language-bash">sudo apt-get install certbot python-certbot-nginx
+</code></pre>
+<p>可以选择两种方式获取证书</p>
+<p>第一种获取证书并且直接自动化配置nginx文件</p>
+<pre><code class="language-bash">sudo certbot --nginx
+</code></pre>
+<p>或者只获取证书文件</p>
+<pre><code class="language-bash">sudo certbot certonly --nginx
+</code></pre>
+<p>其实很简单，根据简单流程输入邮箱和域名就好了</p>
+<p>Certbot自动配置SSL</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://qianmianyao.github.io/debian-an-zhuang-redis/" class="post-title gt-a-link">
+                    Debian安装Redis
+                </a>
             </div>
         
-    </div>
-</div>
-        <div class="pagination-container">
-    
-    
-</div>
+
+        
+
+        
+
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first"><script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>

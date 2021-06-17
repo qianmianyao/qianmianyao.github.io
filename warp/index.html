@@ -1,0 +1,196 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>利用WARP进行流媒体解锁 | 千面妖的网络日志</title>
+
+<link rel="shortcut icon" href="https://qianmianyao.github.io/favicon.ico?v=1623910675879">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://qianmianyao.github.io/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            千面妖的网络日志
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1623910675879" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    利用WARP进行流媒体解锁
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-05-26 ·
+                    </time>
+                    
+                        <a href="https://qianmianyao.github.io/tag/4xRyw9i7z/" class="post-tags">
+                            # 流媒体
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>逛Github的时候看推荐发现了这个项目，结果就是一晚上没睡，并且付出了63元的测试结果下，决定水一篇文章</p>
+<!-- more -->
+<p>Warp是CloudFlare推出的一个VPN服务，目的在于加密流量和IP，实现匿名访问，具体信息可以参考官方的博文👉<a href="https://blog.cloudflare.com/zh-cn/announcing-warp-plus-zh-cn/">Introducing WARP: Fixing Mobile Internet Performance and Security</a></p>
+<p>手动配置其实也不难，为了更方便这里当然推荐使用一键脚本</p>
+<p><a href="https://github.com/missuo/CloudflareWarp">missuo/CloudflareWarp</a></p>
+<h3 id="开始">开始</h3>
+<p>首先确保你的VPS内核版本≥5.X，如果不符合要请先更新内核，这里使用Debian10作为演示</p>
+<p>1.添加源，打开 <code>/etc/apt/source.list</code> 在尾部添加如下内容</p>
+<pre><code class="language-json">deb https://deb.debian.org/debian buster-backports main
+</code></pre>
+<p>2.安装内核后重新启动</p>
+<pre><code class="language-bash">apt install -t buster-backports linux-image-cloud-amd64 linux-headers-cloud-amd64 &amp;&amp; reboot
+</code></pre>
+<p>3.内核安装完毕后执行一键脚本</p>
+<pre><code class="language-bash">wget -O warp.sh https://raw.githubusercontent.com/missuo/CloudflareWarp/main/warp.sh &amp;&amp; bash warp.sh
+</code></pre>
+<p>4.脚本执行完毕后会出现如下选项，选择4，增加IPV6，等待执行完毕即可</p>
+<figure data-type="image" tabindex="1"><a href="https://imgtu.com/i/2jpAyt"><img src="https://z3.ax1x.com/2021/06/16/2jpAyt.png" alt="2jpAyt.png" loading="lazy"></a></figure>
+<p>5.ipv6测试，输入 <code>curl ipv6.ip.sb</code> 返回结果应该是你的ipv6地址</p>
+<p>6.netflix测试，执行如下脚本，如下图则证明解锁成功</p>
+<pre><code class="language-bash">wget -O nf https://cdn.jsdelivr.net/gh/sjlleo/netflix-verify/CDNRelease/nf_2.60_linux_amd64 &amp;&amp; chmod +x nf &amp;&amp; clear &amp;&amp; ./nf
+</code></pre>
+<figure data-type="image" tabindex="2"><a href="https://imgtu.com/i/2jpZef"><img src="https://z3.ax1x.com/2021/06/16/2jpZef.png" alt="2jpZef.png" loading="lazy"></a></figure>
+<p>7.由于仅解锁ipv6，我们需要让路由优先使用ipv6，验证优先级可以使用 <code>curl ip.p3terx.com</code> 来测试，输出的是ipv4就说明你现在是ipv4优先，反之亦然。修改 <code>/etc/gai.conf</code> 在最后一行添加下面的代码</p>
+<pre><code class="language-bash">precedence ::ffff:0:0/96 100
+</code></pre>
+<p>关于代理工具的ipv6优先，请参考如下这篇博客👉<a href="https://loukky.com/archives/1507?__cf_chl_jschl_tk__=ad63295e7e916843957f5f94727b8ecf4b15ddc3-1621981917-0-AYTeutMNxpDydZRNs7P_LQIkqwx_ksRC7zIyTtEZXTtudJ8Yflb0L7qDiL5Jprux30izkMyf_AyoEVjyMMpVj4AcTVGx7LF2WQcV4zLGYLiD1Je_4gqTPuiw7EyrJTQ1IEGc2p-xeg_06Gv69ikZ9EZyoiY9wdsWPzJneGbxdGGvJ7TRiCtcoOTvc6fppGJNrLfqGLc0yStntnuAWGrm76ZVy4vK3rE9OUmRA43-vFEVlducGbowUZrgjFqUBgxr0YWDumUAVdkYo_0tx8dcu1GpC3lzibVSrcNG1ql4sYixfOa6pdlNK-lTlHylGvlKACVScAlluhAVfB6lJewDu5CCRAwXJiyUN4EeLuB8zd3tk5MKtfyfQo1GyQUMgD13hpcQQLeC5liLur5U78LTC2auz0SHgVIt4SRwsStuV5H60jK3RQMDf0VDbkKBqcAcHWuO7zcm5178VGrDuQ-sz4FKxRbOSm8O14k6y6VswTt7">IPV6优先</a></p>
+<p>现在，就可以愉快的观看Netflix啦</p>
+<figure data-type="image" tabindex="3"><a href="https://imgtu.com/i/2jpew8"><img src="https://z3.ax1x.com/2021/06/16/2jpew8.png" alt="2jpew8.png" loading="lazy"></a></figure>
+<h3 id="结语">结语</h3>
+<p>偷偷用speedtest来测一下Warp的速度</p>
+<p><a href="https://imgtu.com/i/2jpEOP"><img src="https://z3.ax1x.com/2021/06/16/2jpEOP.png" alt="2jpEOP.png" loading="lazy"></a><br>
+由于我并没有奈菲的账号，为了测试是否成功，去买了一个账号，有效期两个月，结果无法登录。</p>
+<p>反馈过去告诉我是代理的问题，实在是想知道结果，又花钱买了一个月的代理，结果还是打不开。</p>
+<p>无奈之下，google了一下看看有没有便宜的月抛账号，结果找到了3.5元/月的5日抛，tmd，怪自己没提前去找这种账号，最后的结果就是，<code>代理=22/月</code>、<code>账号20/月x2</code>，一共损失62元。</p>
+<p>所以，千万要早睡</p>
+<p>END</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://qianmianyao.github.io/kms/" class="post-title gt-a-link">
+                    搭建KMS在线激活服务器
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+<span id="hitokoto"></div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        <p>湘ICP备18021298号-1</p>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://qianmianyao.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
