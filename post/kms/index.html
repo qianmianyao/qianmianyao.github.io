@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>File Browser一个简单的网盘程序 | 千面妖的网络日志</title>
+<title>搭建KMS在线激活服务器 | 千面妖的网络日志</title>
 
 <link rel="shortcut icon" href="https://qianmianyao.github.io/favicon.ico?v=1623909952987">
 
@@ -89,86 +89,40 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    File Browser一个简单的网盘程序
+                    搭建KMS在线激活服务器
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-06-11 ·
+                        · 2021-05-16 ·
                     </time>
                     
-                        <a href="https://qianmianyao.github.io/tag/MNGvfunFm/" class="post-tags">
-                            # 网盘
+                        <a href="https://qianmianyao.github.io/tag/rg_i2H6uV/" class="post-tags">
+                            # kms
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>使用nginx和程序本体或者docker搭建一个简易的网盘。</p>
+                    <p>对比其他版本的kms，更方便了，可以180天后自动续期，搭建方便，无需配置，搭建完毕后仅需要一个简单的bat脚本就可以激活系统</p>
 <!-- more -->
-<p>File Browser是什么，请移步官方网站：<a href="https://filebrowser.xyz/">https://filebrowser.xyz</a></p>
-<p>也可以用：<a href="https://qianmianyao.cn/28">https://qianmianyao.cn/28</a></p>
-<h2 id="nginx">Nginx</h2>
-<p>拿centos来演示<br>
-先安装nginx</p>
-<pre><code class="language-bash">yum install nginx -y
+<h3 id="安装">安装</h3>
+<p>1.首先去github发布页面下载安装包</p>
+<pre><code class="language-bash">wget https://github.com/Wind4/vlmcsd/releases/download/svn1113/binaries.tar.gz
 </code></pre>
-<p>安装flie browser</p>
-<pre><code class="language-bash">curl -fsSL https://filebrowser.org/get.sh | bash
+<p>2.解压并进入文件夹，确认你的cpu是什么架构，找到linux的可执行文件</p>
+<pre><code class="language-bash">cd binaries/Linux/intel/static/
+./vlmcsd-x64-musl-static
+#直接运行即可
+ss -tlp | grep vlmcs
+#查看端口，应该是1688
 </code></pre>
-<p>启动flie browser并且让它在后台运行</p>
-<pre><code class="language-bash">filebrowser -r /path/to/your/files &amp;
-# -r 后面设置你要存放文件的路径
+<p>3.在windows上编辑一个 <code>kms.bat</code> 文件，写入如下内容</p>
+<pre><code class="language-powershell">slmgr /skms ip:1688
+#填入你的ip和端口
+slmgr /ato
+slmgr /xpr
 </code></pre>
-<p>启动完毕后默认的端口是8080，当然现在是访问不了的，我们再来设置nginx</p>
-<p>编辑nginx配置文件</p>
-<pre><code class="language-json">server {
-	listen 80;
-	server_name localhost;
-	location / {
-		proxy_pass http://127.0.0.1:8080;
-	}
-}
-//绑定自己的域名可以将localhost字段改成自己的域名
-</code></pre>
-<p>到这里就设置完毕，我们访问你的vps的IP就可以看到部署完毕的程序了</p>
-<p>后台的帐号和密码</p>
-<ul>
-<li>Username: admin</li>
-<li>Password: admin</li>
-</ul>
-<h2 id="docker安装filebrowser">docker安装filebrowser</h2>
-<p>首先直接使用docker官方的一键脚本安装好docker</p>
-<pre><code class="language-bash">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-</code></pre>
-<p>获取镜像</p>
-<pre><code class="language-bash">docker pull filebrowser/filebrowser
-</code></pre>
-<p>开始配置</p>
-<pre><code class="language-bash">mkdir ./filebrowser
-#建立目录
-touch filebrowser.db
-#建立数据库文件
-vim .filebrowser.json
-#写入配置
-</code></pre>
-<p>写入如下配置</p>
-<pre><code class="language-json">{
-  &quot;port&quot;: 80,
-  &quot;baseURL&quot;: &quot;&quot;,
-  &quot;address&quot;: &quot;&quot;,
-  &quot;log&quot;: &quot;stdout&quot;,
-  &quot;database&quot;: &quot;./database.db&quot;,
-  &quot;root&quot;: &quot;/srv&quot;
-}
-</code></pre>
-<p>运行程序</p>
-<pre><code class="language-bash">docker run \\
-    -v /root/filebrowser:/srv \\
-    -v /root/filebrowser/filebrowser.db:/database.db \\
-    -v /root/filebrowser/.filebrowser.json:/.filebrowser.json \\
-    -p 80:80 \\
-    filebrowser/filebrowser
-</code></pre>
-<p>打开你的http://你的ip:80既可以访问程序啦</p>
+<p>4.右键 <code>kms.bat</code> 文件，选择以管理员身份运行，一路按确定即可</p>
+<p><a href="https://github.com/Wind4/vlmcsd">Wind4/vlmcsd</a></p>
 
                 </div>
             </article>
@@ -177,8 +131,8 @@ vim .filebrowser.json
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://qianmianyao.github.io/post/28/" class="post-title gt-a-link">
-                    Certbot自动配置SSL
+                <a href="https://qianmianyao.github.io/post/bash-ming-ling-bu-quan/" class="post-title gt-a-link">
+                    Bash命令补全
                 </a>
             </div>
         

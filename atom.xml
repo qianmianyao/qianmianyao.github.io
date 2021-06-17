@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qianmianyao.github.io</id>
     <title>千面妖的网络日志</title>
-    <updated>2021-06-16T15:20:04.033Z</updated>
+    <updated>2021-06-17T06:06:12.259Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qianmianyao.github.io"/>
     <link rel="self" href="https://qianmianyao.github.io/atom.xml"/>
@@ -87,6 +87,81 @@
 <p>无奈之下，google了一下看看有没有便宜的月抛账号，结果找到了3.5元/月的5日抛，tmd，怪自己没提前去找这种账号，最后的结果就是，<code>代理=22/月</code>、<code>账号20/月x2</code>，一共损失62元。</p>
 <p>所以，千万要早睡</p>
 <p>END</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[搭建KMS在线激活服务器]]></title>
+        <id>https://qianmianyao.github.io/post/kms/</id>
+        <link href="https://qianmianyao.github.io/post/kms/">
+        </link>
+        <updated>2021-05-16T06:02:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>对比其他版本的kms，更方便了，可以180天后自动续期，搭建方便，无需配置，搭建完毕后仅需要一个简单的bat脚本就可以激活系统</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>对比其他版本的kms，更方便了，可以180天后自动续期，搭建方便，无需配置，搭建完毕后仅需要一个简单的bat脚本就可以激活系统</p>
+<!-- more -->
+<h3 id="安装">安装</h3>
+<p>1.首先去github发布页面下载安装包</p>
+<pre><code class="language-bash">wget https://github.com/Wind4/vlmcsd/releases/download/svn1113/binaries.tar.gz
+</code></pre>
+<p>2.解压并进入文件夹，确认你的cpu是什么架构，找到linux的可执行文件</p>
+<pre><code class="language-bash">cd binaries/Linux/intel/static/
+./vlmcsd-x64-musl-static
+#直接运行即可
+ss -tlp | grep vlmcs
+#查看端口，应该是1688
+</code></pre>
+<p>3.在windows上编辑一个 <code>kms.bat</code> 文件，写入如下内容</p>
+<pre><code class="language-powershell">slmgr /skms ip:1688
+#填入你的ip和端口
+slmgr /ato
+slmgr /xpr
+</code></pre>
+<p>4.右键 <code>kms.bat</code> 文件，选择以管理员身份运行，一路按确定即可</p>
+<p><a href="https://github.com/Wind4/vlmcsd">Wind4/vlmcsd</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Bash命令补全]]></title>
+        <id>https://qianmianyao.github.io/post/bash-ming-ling-bu-quan/</id>
+        <link href="https://qianmianyao.github.io/post/bash-ming-ling-bu-quan/">
+        </link>
+        <updated>2021-05-12T06:04:33.000Z</updated>
+        <summary type="html"><![CDATA[<p>总是会忘记一些不怎么常用的命令，今天在github逛街的时候发现了bash的一款命令补全工具，十分好用</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>总是会忘记一些不怎么常用的命令，今天在github逛街的时候发现了bash的一款命令补全工具，十分好用</p>
+<!-- more -->
+<p><a href="https://github.com/scop/bash-completion">scop/bash-completion</a></p>
+<h3 id="安装">安装</h3>
+<p>1.下载bash_completion源码并且解压</p>
+<pre><code class="language-bash">wget https://github.com/scop/bash-completion/releases/download/2.11/bash-completion-2.11.tar.xz
+tar -xf bash-completion-2.11.tar.xz
+</code></pre>
+<p>2.编译安装</p>
+<pre><code class="language-bash">cd bash-completion*
+./confgure
+make &amp;&amp; make install
+</code></pre>
+<p>3.编译完毕后底部会出现如下信息，比如 <code>/usr/local/share/bash-completion/bash_completion</code> 就是编译完毕后的安装地址，等会需要用</p>
+<pre><code class="language-bash">***********
+make  install-data-hook
+make[3]: Entering directory '/root/bash-completion-2.11'
+tmpfile=`mktemp ${TMPDIR:-/tmp}/bash_completion.XXXXXX` &amp;&amp; \
+/bin/sed -e 's|-/etc/bash_completion\.d|-/usr/local/etc/bash_completion.d|' \
+    /usr/local/share/bash-completion/bash_completion &gt;$tmpfile &amp;&amp; \
+cat $tmpfile &gt;/usr/local/share/bash-completion/bash_completion &amp;&amp; \
+rm $tmpfile
+make[3]: Leaving directory '/root/bash-completion-2.11'
+make[2]: Leaving directory '/root/bash-completion-2.11'
+make[1]: Leaving directory '/root/bash-completion-2.11'
+</code></pre>
+<p>4.修改 <code>.bashrc</code> 文件，在底部添加如下信息，吧path改成你刚才安装完毕的地址</p>
+<pre><code class="language-bash">[[ $PS1 &amp;&amp; -f /path ]] &amp;&amp; \
+    . /path
+</code></pre>
+<p>5.现在输入命令后，按tab建即可</p>
+<!-- more -->
+<h3 id="结语">结语</h3>
+<p>其实zsh和fish都有很多补全插件，但是在服务器上装这两个东西感觉别扭，也比较麻烦，就找到了支持bash的工具，说实话体验很不错，省去了不记得命令然后去google的时间，大大提升效率</p>
 ]]></content>
     </entry>
     <entry>
