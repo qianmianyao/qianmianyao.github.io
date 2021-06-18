@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qianmianyao.cn</id>
     <title>千面妖的网络日志</title>
-    <updated>2021-06-18T13:01:44.072Z</updated>
+    <updated>2021-06-18T13:06:16.862Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qianmianyao.cn"/>
     <link rel="self" href="https://qianmianyao.cn/atom.xml"/>
@@ -11,6 +11,52 @@
     <logo>https://qianmianyao.cn/images/avatar.png</logo>
     <icon>https://qianmianyao.cn/favicon.ico</icon>
     <rights>All rights reserved 2021, 千面妖的网络日志</rights>
+    <entry>
+        <title type="html"><![CDATA[Debian更新内核]]></title>
+        <id>https://qianmianyao.cn/post/debian-geng-xin-nei-he/</id>
+        <link href="https://qianmianyao.cn/post/debian-geng-xin-nei-he/">
+        </link>
+        <updated>2021-06-18T13:04:11.000Z</updated>
+        <summary type="html"><![CDATA[<p>体验新内核新特性</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>体验新内核新特性</p>
+<!-- more -->
+<h2 id="debian">Debian</h2>
+<p>使用<code>uname -a</code>查看内核，输出如下</p>
+<pre><code class="language-bash">Linux VM-8-12-debian 4.19.0-11-amd64 #1 SMP Debian 4.19.146-1 (2020-09-17) x86_64 GNU/Linux
+</code></pre>
+<h3 id="编译安装内核">编译安装内核</h3>
+<p>首先去<a href="https://www.kernel.org/?ivk_sa=1024320u">官网</a>或者国内<a href="https://mirror.bjtu.edu.cn/kernel/linux/kernel/v5.x/">镜像站</a>下载需要的内核版本</p>
+<ul>
+<li>解压且进入解压包</li>
+<li>使用马<code>make menuconfig</code>来进行配置</li>
+</ul>
+<p>按照提示安装所需要的依赖即可</p>
+<ul>
+<li>修改生成的<code>.config</code>文件，编辑<code>CONFIG_SYSTEM_TRUSTED_KEYS=&quot;&quot;</code>使其为空</li>
+<li>禁用签名</li>
+</ul>
+<pre><code class="language-bash">scripts/config --disable MODULE_SIG
+scripts/config --disable DEBUG_INFO
+</code></pre>
+<ul>
+<li>使用<code>make deb-pkg</code>生成deb包</li>
+</ul>
+<p>使用<code>- j</code>选项可以调用更多核心，比如<code>make -j 8 deb-pkg</code></p>
+<ul>
+<li>编译完毕后会在所在文件夹的根目录出现3个编译完成的deb文件，直接安装即可</li>
+</ul>
+<h3 id="卸载旧内核">卸载旧内核</h3>
+<p>使用<code>dpkg --list | grep linux-image</code> 来查看安装的所有内核</p>
+<p>debina中内核的包名是<code>linux-images</code>，redhat中包名<code>kernel</code></p>
+<ul>
+<li>卸载内核需要删除内核文件和头部文件</li>
+</ul>
+<pre><code class="language-jsx">$ apt purge linux-image-version
+$ apt purge linux-headers-version
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[利用WARP进行流媒体解锁]]></title>
         <id>https://qianmianyao.cn/post/warp/</id>
