@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qianmianyao.cn</id>
     <title>千面妖的网络日志</title>
-    <updated>2021-06-18T13:10:06.474Z</updated>
+    <updated>2021-06-18T14:00:46.967Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qianmianyao.cn"/>
     <link rel="self" href="https://qianmianyao.cn/atom.xml"/>
@@ -29,7 +29,7 @@
 <p>首先去<a href="https://www.kernel.org/?ivk_sa=1024320u">官网</a>或者国内<a href="https://mirror.bjtu.edu.cn/kernel/linux/kernel/v5.x/">镜像站</a>下载需要的内核版本</p>
 <ul>
 <li>解压且进入解压包</li>
-<li>使用马<code>make menuconfig</code>来进行配置</li>
+<li>使用<code>make menuconfig</code>来进行配置</li>
 </ul>
 <p>按照提示安装所需要的依赖即可</p>
 <ul>
@@ -44,7 +44,7 @@ scripts/config --disable DEBUG_INFO
 </ul>
 <p>使用<code>- j</code>选项可以调用更多核心，比如<code>make -j 8 deb-pkg</code></p>
 <ul>
-<li>编译完毕后会在所在文件夹的根目录出现3个编译完成的deb文件，直接安装即可</li>
+<li>编译完毕后会在所在文件夹的根目录出现3个编译完成的deb文件，直接安装重启即可</li>
 </ul>
 <h3 id="卸载旧内核">卸载旧内核</h3>
 <p>使用<code>dpkg --list | grep linux-image</code> 来查看安装的所有内核</p>
