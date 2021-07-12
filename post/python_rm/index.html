@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>流媒体 | 千面妖的网络日志</title>
+<title>优化Linux中rm的删除逻辑 | 千面妖的网络日志</title>
 
 <link rel="shortcut icon" href="https://qianmianyao.cn/favicon.ico?v=1626063361589">
 
@@ -25,11 +25,11 @@
 
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -85,46 +85,113 @@
     </div>
 </nav>
 
-        <div class="current-tag-container">
-            <h2 class="title gt-c-content-color-first">
-                #流媒体
-            </h2>
-        </div>
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://qianmianyao.cn/post/warp/">
-                            <span class="post-title gt-c-content-color-first">利用WARP进行流媒体解锁</span>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    优化Linux中rm的删除逻辑
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-07-12 ·
+                    </time>
+                    
+                        <a href="https://qianmianyao.cn/tag/python/" class="post-tags">
+                            # python
                         </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>逛Github的时候看推荐发现了这个项目，结果就是一晚上没睡，并且付出了63元的测试结果下，决定水一篇文章</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-05-26 ·
-                        </time>
-                        
-                            <a href="https://qianmianyao.cn/tag/4xRyw9i7z/" class="post-tag">
-                                # 流媒体
-                            </a>
-                        
-                    </div>
+                    
                 </div>
-                
+                <div class="post-content">
+                    <p>在腾讯开发者中心刷帖的时候发现了这么一个帖子“使用shell脚本来优化rm的删除逻辑”，配图如下<br>
+<img src="https://ftp.bmp.ovh/imgs/2021/07/5704ff271731fb16.png" alt="图片来源于腾讯社区" loading="lazy"><br>
+我想起每次无意中使用<code>rm -rf</code>来删除当时以为不重要的文件，之后又要重新下载的蛋疼时刻，虽然有人推荐用<code>alias rm=mv</code>来代替rm，但是使用体验并非那么美好，看到这个帖子后，很感兴趣就打算用shell来写一个。<br>
+但是，几年没有使用过shell了，语法也忘光了，写起来磕磕碰碰，正好我现在在学python，正好使用python来实现<br>
+脚本如下：</p>
+<pre><code class="language-python">import os
+import sys
+
+list_file = sys.argv[1:]
+
+def rm_optimeize():
+    for file_source in list_file:
+        file_ta = os.path.exists(file_source)
+        if file_ta:
+            file_size = os.path.getsize(file_source)
+            if file_size &gt; 102400:
+                ask = input(&quot;文件大于1G，是否删除[yes/no]&quot;)
+                if ask == &quot;yes&quot;:
+                    os.system(f'rm -rf {file_source}')
+                else:
+                    os.system(f'mv {file_source} /tmp')
+            elif file_size &lt; 102400:
+                os.system(f'mv {file_source} /tmp')
+        elif not file_ta:
+            continue
+
+if sys.argv[1] == &quot;./*&quot;:
+    rm_optimeize()
+else:
+    rm_optimeize()
+</code></pre>
+<p>脚本的整体逻辑很简单，就是图上的逻辑</p>
+<ol>
+<li>首先获取外部传入的参数，如文件名</li>
+<li>获取到参数后存到变量中，变量是一个列表，所以可以存放多个参数</li>
+<li>使用fro循环来遍历参数，进行判断，比如文件是否存在，文件大小判断，然后进行处理</li>
+<li>为了兼容<code>rm -rf ./*</code>语法，启动脚本后会先进行一个字符串的判断</li>
+</ol>
+<p>上面的脚本可以直接拿来用，本次练习到此结束</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://qianmianyao.cn/post/debian-geng-xin-nei-he/" class="post-title gt-a-link">
+                    Debian更新内核
+                </a>
             </div>
         
-    </div>
-</div>
-        <div class="pagination-container">
-    
-    
-</div>
+
+        
+            <span id="/post/python_rm/" class="leancloud_visitors" data-flag-title="优化Linux中rm的删除逻辑">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'UfN3YbTkXUE9qT8WQ2p1Qmbq-gzGzoHsz',
+		appKey: 'AxkHxfOTXkikXgnCztOez056',
+		avatar: '',
+		pageSize: 5,
+		recordIp: true,
+		placeholder: '有任何疑问或者建议欢迎评论指出~',
+		visitor: true,
+	});
+</script>
+
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first"><script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
