@@ -6,7 +6,7 @@
 
 <title>优化Linux中rm的删除逻辑 | 千面妖的网络日志</title>
 
-<link rel="shortcut icon" href="https://qianmianyao.cn/favicon.ico?v=1626136686935">
+<link rel="shortcut icon" href="https://qianmianyao.cn/favicon.ico?v=1626153630616">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://qianmianyao.cn/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1626136686935" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1626153630616" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -114,28 +114,34 @@ import shutil
 # 取传入参数的1-n个参数
 list_file = sys.argv[1:]
 
-
 def rm_optimeize():
     for file_source in list_file:
+        # 使用函数获取文件存在的状态
         file_ta = os.path.exists(file_source)
-        file_size = os.path.getsize(file_source)
-        if file_ta and file_size &gt; 102400:
-            ask = input(&quot;文件大于1G，是否删除[yes/no]&quot;)
-            if ask == &quot;yes&quot;:
-                os.remove(file_source)
+        # 如果文件不存在，就跳过本次循环
+        if not file_ta:
+            print(f&quot;{file_source}文件不存在&quot;)
+            continue
+        elif file_ta:
+            # 使用函数获取文件的大小
+            file_size = os.path.getsize(file_source)
+            # 判断文件的大小
+            if file_size &gt;= 102400:
+                ask = input(&quot;文件大于1G，是否删除[y/n]：&quot;)
+                if ask == &quot;y&quot;:
+                    os.remove(file_source)
+                else:
+                    shutil.move(file_source, &quot;/tmp&quot;)
             else:
                 shutil.move(file_source, &quot;/tmp&quot;)
-        elif file_ta and file_size &lt; 102400:
-            shutil.move(file_source, &quot;/tmp&quot;)
-            print(&quot;文件已放入/tmp回收站&quot;)    
-        elif not file_ta:
-            continue
+
 
 # 兼容linux中&quot;./*&quot;语法
 if sys.argv[1] == &quot;./*&quot;:
     rm_optimeize()
 else:
     rm_optimeize()
+
 </code></pre>
 <p>脚本的整体逻辑很简单，就是图上的逻辑</p>
 <ol>
