@@ -6,7 +6,7 @@
 
 <title>优化Linux中rm的删除逻辑 | 千面妖的网络日志</title>
 
-<link rel="shortcut icon" href="https://qianmianyao.cn/favicon.ico?v=1626153630616">
+<link rel="shortcut icon" href="https://qianmianyao.cn/favicon.ico?v=1626158812132">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://qianmianyao.cn/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1626153630616" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1626158812132" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -150,7 +150,11 @@ else:
 <li>使用fro循环来遍历参数，进行判断，比如文件是否存在，文件大小判断，然后进行处理</li>
 <li>为了兼容<code>rm -rf ./*</code>语法，启动脚本后会先进行一个字符串的判断</li>
 </ol>
-<p>上面的脚本可以直接拿来用，本次练习到此结束</p>
+<p>完成度<br>
+[<em>] 文件大于1G询问是否永久删除<br>
+[</em>] 文件小于1G直接丢入回收站<br>
+[] 设定每日自动i清理回收站<br>
+[*] 兼容rm语法</p>
 
                 </div>
             </article>
