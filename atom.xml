@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qianmianyao.cn</id>
     <title>千面妖的网络日志</title>
-    <updated>2021-07-12T04:44:58.473Z</updated>
+    <updated>2021-07-13T00:38:10.451Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qianmianyao.cn"/>
     <link rel="self" href="https://qianmianyao.cn/atom.xml"/>
@@ -20,11 +20,13 @@
         <content type="html"><![CDATA[<p>在腾讯开发者中心刷帖的时候发现了这么一个帖子“使用shell脚本来优化rm的删除逻辑”，配图如下<br>
 <img src="https://ftp.bmp.ovh/imgs/2021/07/5704ff271731fb16.png" alt="图片来源于腾讯社区" loading="lazy"><br>
 我想起每次无意中使用<code>rm -rf</code>来删除当时以为不重要的文件，之后又要重新下载的蛋疼时刻，虽然有人推荐用<code>alias rm=mv</code>来代替rm，但是使用体验并非那么美好，看到这个帖子后，很感兴趣就打算用shell来写一个。<br>
-但是，几年没有使用过shell了，语法也忘光了，写起来磕磕碰碰，正好我现在在学python，正好使用python来实现<br>
-脚本如下：</p>
+但是，几年没有使用过shell了，语法也忘光了，写起来磕磕碰碰，正好我现在在学python，正好使用python来实现</p>
+<p><strong>脚本如下：</strong></p>
 <pre><code class="language-python">import os
 import sys
+import shutil
 
+# 取传入参数的1-n个参数
 list_file = sys.argv[1:]
 
 
@@ -35,15 +37,16 @@ def rm_optimeize():
         if file_ta and file_size &gt; 102400:
             ask = input(&quot;文件大于1G，是否删除[yes/no]&quot;)
             if ask == &quot;yes&quot;:
-                os.system(f'rm -rf {file_source}')
+                os.remove(file_source)
             else:
-                os.system(f'mv {file_source} /tmp')
+                shutil.move(file_source, &quot;/tmp&quot;)
         elif file_ta and file_size &lt; 102400:
-            os.system(f'mv {file_source} /tmp')
+            shutil.move(file_source, &quot;/tmp&quot;)
+            print(&quot;文件已放入/tmp回收站&quot;)    
         elif not file_ta:
             continue
 
-
+# 兼容linux中&quot;./*&quot;语法
 if sys.argv[1] == &quot;./*&quot;:
     rm_optimeize()
 else:
