@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qianmianyao.cn</id>
     <title>千面妖的网络日志</title>
-    <updated>2021-07-13T06:53:42.159Z</updated>
+    <updated>2021-07-13T06:55:29.314Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qianmianyao.cn"/>
     <link rel="self" href="https://qianmianyao.cn/atom.xml"/>
@@ -67,10 +67,10 @@ else:
 </ol>
 <p>完成度</p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9943155"><label class="task-list-item-label" for="task-item-9943155"> 文件大于1G询问是否永久删除</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-525288"><label class="task-list-item-label" for="task-item-525288"> 文件小于1G直接丢入回收站</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-609910"><label class="task-list-item-label" for="task-item-609910"> 设定每7天自动i清理回收站</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2984636"><label class="task-list-item-label" for="task-item-2984636"> 兼容rm语法</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5828324"><label class="task-list-item-label" for="task-item-5828324"> -文件大于1G询问是否永久删除</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2072590"><label class="task-list-item-label" for="task-item-2072590">  -文件小于1G直接丢入回收站</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2515139"><label class="task-list-item-label" for="task-item-2515139">  -设定每7天自动清理回收站</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2372621"><label class="task-list-item-label" for="task-item-2372621">  -兼容rm语法</label></li>
 </ul>
 ]]></content>
     </entry>
